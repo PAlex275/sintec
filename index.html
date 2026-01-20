@@ -3,15 +3,31 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="SINTEC - Soluții software ERP, sisteme informatice pentru spitale și aplicații personalizate pentru companii și instituții publice din România."
-    />
-    <meta
-      name="keywords"
-      content="ERP, software, contabilitate, salarizare, gestiune, DIASAN, spitale, România"
-    />
+    <meta name="description" content="SINTEC - Soluții software ERP, sisteme informatice pentru spitale și aplicații personalizate pentru companii și instituții publice din România." />
+    <meta name="keywords" content="ERP, software, contabilitate, salarizare, gestiune, DIASAN, spitale, România" />
     <title>SINTEC - Soluții Software pentru Afaceri</title>
+    <script>
+      // Handle SPA redirect from 404.html
+      (function(){
+        var redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        if (redirect && redirect !== location.href) {
+          history.replaceState(null, null, redirect);
+        }
+      })();
+      // Handle ?p= parameter from 404 redirect
+      (function(){
+        var l = window.location;
+        if (l.search[1] === 'p') {
+          var decoded = l.search.slice(4).split('&q=').map(function(s) {
+            return s.replace(/~and~/g, '&');
+          });
+          window.history.replaceState(null, null,
+            l.pathname.slice(0, -1) + decoded[0] + (decoded[1] ? '?' + decoded[1] : '') + l.hash
+          );
+        }
+      })();
+    </script>
     <script type="module" crossorigin src="/sintec/assets/index-BLQFNTDu.js"></script>
     <link rel="stylesheet" crossorigin href="/sintec/assets/index-CJ6Hw-jf.css">
   </head>
